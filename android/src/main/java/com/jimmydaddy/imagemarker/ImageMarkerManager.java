@@ -39,7 +39,7 @@ import java.util.UUID;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import static com.jimmydaddy.imagemarker.Utils.transRGBColor;
-
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
 
 /**
  * Created by jimmydaddy on 2017/3/6.
@@ -56,6 +56,9 @@ public class ImageMarkerManager extends ReactContextBaseJavaModule {
     public ImageMarkerManager(ReactApplicationContext reactContext) {
         super(reactContext);
         this.context = reactContext;
+        ImagePipelineConfig.Builder builder = ImagePipelineConfig.newBuilder(context)
+            .setDownsampleEnabled(false);
+        Fresco.initialize(context, builder.build());
     }
 
     @Override
